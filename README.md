@@ -30,4 +30,4 @@ This project aims to provide a straightforward solution for playing purchased mu
 
 ---
 
-![alt text](images/UML_jukebox.png)
+![alt text](https://github.com/chrisdeso/Jukebox-7000/blob/1ef46eec3e8228b92184006662025ded48ed56b3/images/UML_Jukebox.png)
