@@ -26,11 +26,6 @@ sequenceDiagram
     deactivate ACC
 
     %% Song Playback Flow
-    User1->>Album: getSongs()
-    activate Album
-    Album-->>User1: List<Song>
-    deactivate Album
-    
     User1->>Song: getDetails()
     activate Song
     Song-->>User: song metadata
