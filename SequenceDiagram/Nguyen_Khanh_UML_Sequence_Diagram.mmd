@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant User
+    participant LibraryView
+    participant SearchController
+    participant SongDatabase
+    participant Song
+    
+    User->>LibraryView: Select filter type and enter search term
+    LibraryView->>SearchController: filterSongs()
+    SearchController->>SongDatabase: querySongsByFilter()
+    SongDatabase-->>SearchController: filteredSongs
+    SearchController->>Song: retrieveDetails()
+    Song-->>SearchController: song details
+    SearchController-->>LibraryView: complete list of filtered songs
+    LibraryView->>User: displayFilteredResults()
