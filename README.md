@@ -2,7 +2,7 @@
 
 
 CS3354.001 | Fall 2024
-Chris de Sousa && Hilario Villanueva Jr.
+Chris de Sousa, Hilario Villanueva Jr, Khanh Nguyen 
 
 ### **Case Scenario**
 
