@@ -1,4 +1,7 @@
 // CreateAccount.java
+
+import java.util.ArrayList;
+
 public class CreateAccount {
     private static final int MIN_PASSWORD_LENGTH = 6;
     private static ArrayList<String> existingUsernames = new ArrayList<>();

@@ -1,4 +1,4 @@
-Chris de Sousa, Nguyen_Khanh
+Chris de Sousa, Nguyen_Khanh, Hilario Valenzuela
 CS3354 - Fall 2024
 
 UML Sequence Diagram
