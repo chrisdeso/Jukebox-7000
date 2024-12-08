@@ -18,5 +18,3 @@ public class Account {
     public String getUsername() { return username; }
     public String getPassword() { return password; }
     public List<Song> getSongs() { return songs; }
-    public void addSong(Song song) { songs.add(song); }
-}

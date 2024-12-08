@@ -3,6 +3,8 @@ import controller.SongDatabase;
 import controller.SearchController;
 import controller.AddMusic;
 import controller.PlaybackController;
+import controller.AccountDatabase;
+import controller.LoginController;
 
 import javafx.application.Platform;
 
@@ -10,12 +12,18 @@ public class MusicAppMain {
     public static void main(String[] args) {
         // Initialize JavaFX Platform
         Platform.startup(() -> {});
-        SongDatabase songDatabase = new SongDatabase();
-        SearchController searchController = new SearchController(songDatabase);
-        AddMusic addMusic = new AddMusic(songDatabase);
+        
+        // Initialize account management
+        AccountDatabase accountDatabase = new AccountDatabase();
+        LoginController loginController = new LoginController(accountDatabase);
+        
+        // Initialize song management with account support
+        SongDatabase songDatabase = new SongDatabase(accountDatabase);
+        SearchController searchController = new SearchController(songDatabase, accountDatabase);
+        AddMusic addMusic = new AddMusic(songDatabase, accountDatabase);
         PlaybackController playbackController = new PlaybackController();
         
-        LibraryView libraryView = new LibraryView(searchController, addMusic, playbackController);
-        // Initialize the UI and show the main window
+        // Create the main view with login support
+        LibraryView libraryView = new LibraryView(searchController, addMusic, playbackController, loginController);
     }
 }

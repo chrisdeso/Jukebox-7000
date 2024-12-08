@@ -1,8 +1,11 @@
 package controller;
 
 import model.Song;
+import model.Account;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -10,24 +13,41 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class SongDatabase {
-    private List<Song> songs;
+    private Map<String, List<Song>> userSongs;
+    private AccountDatabase accountDatabase;
 
-    public SongDatabase() {
-        songs = new ArrayList<>();
+    public SongDatabase(AccountDatabase accountDatabase) {
+        this.accountDatabase = accountDatabase;
+        userSongs = new HashMap<>();
+        // Initialize empty song lists for each user
+        userSongs.put("Khanh", new ArrayList<>());
+        userSongs.put("Chris", new ArrayList<>());
+        userSongs.put("Hilario", new ArrayList<>());
     }
 
     public void addSong(Song song) {
-        songs.add(song);
+        Account currentUser = accountDatabase.getCurrentUser();
+        if (currentUser != null) {
+            userSongs.computeIfAbsent(currentUser.getUsername(), k -> new ArrayList<>()).add(song);
+        }
     }
 
     public List<Song> querySongsByFilter(String filter) {
-        return songs.stream()
+        Account currentUser = accountDatabase.getCurrentUser();
+        if (currentUser == null) return new ArrayList<>();
+
+        List<Song> userSongList = userSongs.get(currentUser.getUsername());
+        return userSongList.stream()
                 .filter(song -> song.getTitle().toLowerCase().contains(filter.toLowerCase()))
                 .collect(java.util.stream.Collectors.toList());
     }
 
     public Song findSongByTitleAndArtist(String title, String artist) {
-        return songs.stream()
+        Account currentUser = accountDatabase.getCurrentUser();
+        if (currentUser == null) return null;
+
+        List<Song> userSongList = userSongs.get(currentUser.getUsername());
+        return userSongList.stream()
                 .filter(song -> song.getTitle().equals(title) && song.getArtist().equals(artist))
                 .findFirst()
                 .orElse(null);
@@ -68,5 +88,11 @@ public class SongDatabase {
             e.printStackTrace();
         }
         return results;
+    }
+
+    public List<Song> getCurrentUserSongs() {
+        Account currentUser = accountDatabase.getCurrentUser();
+        if (currentUser == null) return new ArrayList<>();
+        return userSongs.getOrDefault(currentUser.getUsername(), new ArrayList<>());
     }
 }

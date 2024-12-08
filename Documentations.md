@@ -34,7 +34,7 @@ mvn clean install
 
 4) Run the Application: You can run the application by executing the MusicAppMain class. In your IDE, locate the MusicAppMain.java file and run it. If you are using the command line, navigate to the bin directory and run:
 
-javac -cp "lib/*" -d bin src/**/*.java src/*.java && java --module-path lib --add-modules javafx.controls,javafx.media -cp bin MusicAppMain
+java --enable-preview -cp bin:lib/* MusicAppMain
 
 Adding Songs
 To add songs to the music library:
