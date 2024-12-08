@@ -8,7 +8,7 @@ Chris de Sousa, Hilario Villanueva Jr, Khanh Nguyen
 
 ##### Jukebox 7000
 
-Jukebox 7000 is a simple MP3 player designed for users who want to play their owned music without requiring a subscription service. It operates both as a terminal application and a standalone Java executable (.jar file).
+Jukebox 7000 is a simple MP3 player designed for users who want to play their music in a standalone Java executable (.jar file).
 
 ##### Background
 
